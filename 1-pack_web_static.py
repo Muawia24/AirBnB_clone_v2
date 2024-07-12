@@ -14,7 +14,7 @@ def do_pack():
     """
     local("sudo mkdir -p versions")
 
-    time = datetime.now().strtime('%Y%m%d%H%M%S')
+    time = datetime.now().strftime('%Y%m%d%H%M%S')
     archive_path = "version/web_static_{}.tgz".format(time)
     gen_files = local("sudo tar -cvzf {} web_static".format(archive_path))
 

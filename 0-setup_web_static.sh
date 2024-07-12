@@ -19,7 +19,7 @@ sudo echo "
 sudo ln -s /data/web_static/releases/test/ /data/web_static/current
 
 sudo chown -hR ubuntu:ubuntu /data/
-ALIAS='\n\talias/data/web_static/current/;\n\t'
-sudo sed -i '47 i \\n\tlocation /hbnb_static {$ALIAS}' /etc/nginx/sites-available/default
+ALIAS="{\n\talias/data/web_static/current/;\n\t}"
+sudo sed -i "47 i \\n\tlocation /hbnb_static $ALIAS" /etc/nginx/sites-available/default
 
 sudo service nginx restart
