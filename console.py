@@ -90,11 +90,29 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        class_name = args.split(" ")[0]
+        
+        arg_list = args.split(" ")
+        kwargs = {}
+        class_name = arg_list[0]
         if class_name not in HBNBCommand.class_names:
             print("** class doesn't exist **")
             return
-        obj = dict_classes[class_name]()
+        
+        for i in range(1, len(arg_list)):
+            key, value = tuple(arg_list[i].split("="))
+            if value[0] == '"':
+                value = value.strip('"').replace("_", " ")
+            else:
+                value = eval(value)
+
+            kwargs[key] = value
+
+            if kwargs == {}:
+                obj = dict_classes[class_name]()
+
+            else:
+                obj = dict_classes[class_name](**kwargs)
+                storage.new(obj)
         obj.save()
         print(obj.id)
 
