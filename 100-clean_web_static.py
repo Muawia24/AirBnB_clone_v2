@@ -19,7 +19,7 @@ def do_clean(number=0):
 
     archives = sorted(os.listdir("versions"))
 
-    for archive in range(number):
+    for i in range(number):
         archives.pop()
 
     with lcd("versions"):
@@ -29,7 +29,7 @@ def do_clean(number=0):
         archives = run("ls -tr").split()
         archives = [archive for archive in archives if "web_static" in archive]
 
-        for archive in range(number):
+        for i in range(number):
             archives.pop()
-        for arc in archives:
-            run("rm -rf ./{}".format(arc))
+        for archive in archives:
+            run("rm -rf ./{}".format(archive))
