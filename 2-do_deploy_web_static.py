@@ -21,8 +21,7 @@ def do_deploy(archive_path):
         return False
 
     file_name = archive_path.split('/')[-1]
-    rm_extension = "/data/web_static/releases/" + "{}"\
-            .format(file_name.split('.')[0])
+    rm_extension = "/data/web_static/releases/" + "{}".format(file_name.split('.')[0])
     tmp = "/tmp/" + file_name
 
     try:
