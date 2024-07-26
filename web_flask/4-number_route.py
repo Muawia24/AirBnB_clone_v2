@@ -36,11 +36,10 @@ def py(text='is cool'):
     return f'Python {url_txt}'
 
 
-@app.route('/number/<n>', strict_slashes=False)
+@app.route('/number/<int:n>', strict_slashes=False)
 def is_int(n):
 
-    if type(int(n)) == int:
-        return f'{n} is a number'
+    return f'{n} is a number'
 
 
 if __name__ == '__main__':
