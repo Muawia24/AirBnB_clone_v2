@@ -23,7 +23,7 @@ class State(BaseModel, Base):
     else:
         name = ""
 
-        @proparty
+        @property
         def cities(self):
             """ 
             return the list of City objects from

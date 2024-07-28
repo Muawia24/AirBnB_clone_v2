@@ -15,14 +15,14 @@ place_amenity = Table('place_amenity', Base.metadata,
                              ForeignKey('amenities.id'), nullable=False))
 
 
-class Place(BaseModel):
+class Place(BaseModel, Base):
     """This class defines class Place"""
 
     __tablename__ = 'places'
-    if os.getenv('HBNB_TYPE_STORAGE') = 'db':
+    if os.getenv('HBNB_TYPE_STORAGE') == 'db':
         name = Column(String(128), nullable=False)
         city_id = Column(String(60), ForeignKey('cities.id'), nullable=False)
-        user_id = String(60), ForeignKey('users.id'), nullable=False
+        user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
         description = Column(String(1024), nullable=True)
         number_rooms = Column(Integer, nullable=False, default=0)
         number_bathrooms = Column(Integer, nullable=False, default=0)
@@ -36,7 +36,7 @@ class Place(BaseModel):
                 'Review', back_populates='place',
                 cascade='all, delete, delete-orphan')
         user = relationship('User', back_populates='places') # slave cascade
-        ammentities = relationship(
+        amenities = relationship(
                 'Amenity', secondary=place_amenity,
                 viewonly=False, back_populates='place_amenities')
 

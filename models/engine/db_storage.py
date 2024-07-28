@@ -18,9 +18,15 @@ class DBStorage:
     """This class creates the engine for a mysql database
     storage system"""
 
-    all_classes = {"BaseModel": BaseModel, "User": User, "State": State,
-                   "City": City, "Amenity": Amenity, "Place": Place,
-                   "Review": Review}
+    all_classes = {
+            "BaseModel": BaseModel,
+            "User": User,
+            "State": State,
+            "City": City,
+            "Amenity": Amenity,
+            "Place": Place,
+            "Review": Review
+            }
     __engine = None
     __session = None
 
@@ -37,9 +43,9 @@ class DBStorage:
     def all(self, cls=None):
         """Query all objects for curent session based on class name"""
         obj_dict = {}
-        cls = self.all_classes[cls]
-        if cls is not None:
-            objects = self.__session.query(cls).all()
+        clss = self.all_classes[cls.__name__]
+        if clss is not None:
+            objects = self.__session.query(clss).all()
         else:
             objects = self.__session.query(
                 State, City, User, Amenity, Place, Review)

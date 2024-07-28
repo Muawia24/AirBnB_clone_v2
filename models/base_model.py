@@ -6,7 +6,7 @@
 
 
 from datetime import datetime
-from models import storage
+import models
 from uuid import uuid4
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
@@ -45,14 +45,14 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            storage.new(self)
 
     def save(self):
         """Update the public instance attribute updated_at
             with the current time
         """
         self.updated_at = datetime.now()
-        storage.save()
+        models.storage.new(self)
+        models.storage.save()
 
     def to_dict(self):
         """change the object to a disctionary"""
@@ -67,7 +67,7 @@ class BaseModel:
 
     def delete(self):
         """ Delete current instance of storage """
-        storage.delete(self)
+        models.storage.delete(self)
 
     def __str__(self):
         """String representation of the class"""
