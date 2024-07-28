@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 """Module that defines class State"""
 
+
+import models
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, Integer
 from sqlalchemy.orm import relationship
+import os
 
 
 class State(BaseModel, Base):
@@ -12,7 +15,7 @@ class State(BaseModel, Base):
     __tablename__ = 'states'
     if os.getenv('HBNB_TYPE_STORAGE') == 'db':
 
-        name = column(string(128), nullable=FALSE)
+        name = Column(String(128), nullable=False)
         cities = relationship(
                 'City', back_populates='state',
                 cascade='all, delete, delete-orphan')

@@ -1,12 +1,11 @@
 #!/usr/bin/python3
 """Module that defines class City"""
 
-from models.base_model import BaseModel
 from models.base_model import BaseModel, Base, Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 import os
 
-class City(BaseModel):
+class City(BaseModel, Base):
     """This class defines class City"""
 
     __tablename__ = 'cities'
