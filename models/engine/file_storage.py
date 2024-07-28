@@ -31,7 +31,7 @@ class FileStorage:
             new_dict = {}
         for key, value in self.__objects.items():
             if cls == value.__class__ or cls == value.__class__.__name__:
-                new_dict[key] = value 
+                new_dict[key] = value
         return self.__objects
 
     def new(self, obj):
@@ -69,4 +69,4 @@ class FileStorage:
 
     def close(self):
         """ deserializing the JSON file to objects """
-        self.reload();
+        self.reload()
