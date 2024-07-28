@@ -53,3 +53,7 @@ class FileStorage:
                 obj = class_obj(**kwrags)
                 deserialised_objs[key] = obj
             FileStorage.__objects = deserialised_objs
+
+    def close(self):
+        """ deserializing the JSON file to objects """
+        self.reload();
