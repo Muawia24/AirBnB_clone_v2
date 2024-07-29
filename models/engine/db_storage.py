@@ -43,7 +43,7 @@ class DBStorage:
     def all(self, cls=None):
         """Query all objects for curent session based on class name"""
         obj_dict = {}
-        clss = self.all_classes[cls.__name__]
+        clss = self.all_classes[cls]
         if clss is not None:
             objects = self.__session.query(clss).all()
         else:
