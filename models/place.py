@@ -10,9 +10,9 @@ import os
 
 place_amenity = Table('place_amenity', Base.metadata,
                       Column('place_id', String(60),
-                             ForeignKey('places.id'), nullable=False),
+                             ForeignKey('places.id'), nullable=False, primary_key=True),
                       Column('amenity_id', String(60),
-                             ForeignKey('amenities.id'), nullable=False))
+                             ForeignKey('amenities.id'), nullable=False, primary_key=True))
 
 
 class Place(BaseModel, Base):
@@ -37,7 +37,7 @@ class Place(BaseModel, Base):
                 cascade='all, delete, delete-orphan')
         user = relationship('User', back_populates='places') # slave cascade
         amenities = relationship(
-                'Amenity', secondary=place_amenity,
+                'Amenity', secondary='place_amenity',
                 viewonly=False, back_populates='place_amenities')
 
     else:
